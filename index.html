@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hart Holdings - Your Complete Construction & Finance Partner</title>
+    <style>
+        /* ========================================
+        CORE STYLES & SETUP
+        ========================================
+        */
+        :root {
+            --primary-deep-purple: #23058a;
+            --secondary-violet: #b16cce;
+            --accent-red: #f2024a;
+            --background-light-gray: #F7F7F7;
+            --background-white: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+            --text-muted: #666666;
+            --serif-font: 'Georgia', 'Times New Roman', Times, serif;
+            --sans-serif-font: 'Helvetica Neue', Arial, sans-serif;
+            --border-color: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--sans-serif-font);
+            background-color: var(--background-light-gray);
+            color: var(--text-dark);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========================================
+        TYPOGRAPHY & GENERIC ELEMENTS
+        ========================================
+        */
+        h1, h2, h3 {
+            font-family: var(--serif-font);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 4em; }
+        h2 { font-size: 2.8em; color: var(--primary-deep-purple); }
+        h3 { font-size: 1.8em; }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: var(--text-light);
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            background-color: #d9003b;
+            box-shadow: 0 10px 20px rgba(242, 2, 74, 0.2);
+        }
+
+        /* ========================================
+        NAVIGATION
+        ========================================
+        */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+        }
+        
+        nav .logo {
+            font-family: var(--serif-font);
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        nav .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 35px;
+            font-weight: bold;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        nav.scrolled {
+            background-color: var(--background-white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 15px 50px;
+        }
+
+        nav.scrolled .logo,
+        nav.scrolled .nav-links a {
+            color: var(--primary-deep-purple);
+        }
+
+        nav.scrolled .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* ========================================
+        HERO SECTION
+        ========================================
+        */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-deep-purple) 0%, var(--secondary-violet) 100%);
+            overflow: hidden;
+        }
+
+        .hero .background-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('Images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            filter: grayscale(100%);
+        }
+        
+        .hero::before { /* Parallax blueprint lines */
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: parallax 20s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes parallax {
+            from { background-position: 0 0; }
+            to { background-position: -1000px 500px; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px auto 30px;
+            line-height: 1.6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* ========================================
+        ON-SCROLL ANIMATIONS
+        ========================================
+        */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+        GENERAL SECTION STYLING
+        ========================================
+        */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header .sub-title {
+            color: var(--accent-red);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+        ABOUT & STATS SECTION
+        ========================================
+        */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image, .about-content {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary-deep-purple);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+        DIVISIONS (SERVICES) SECTION
+        ========================================
+        */
+        #divisions {
+            background-color: var(--background-white);
+        }
+        
+        .division-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-muted);
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-red);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .tab-button.active {
+            color: var(--primary-deep-purple);
+        }
+
+        .tab-button.active::after {
+            transform: scaleX(1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.8s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .division-content-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .division-text, .division-image {
+            flex: 1;
+        }
+        .division-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .division-text h3 {
+             color: var(--primary-deep-purple);
+             margin-bottom: 15px;
+        }
+        .division-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .division-text li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        .division-text li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========================================
+        BENEFITS SECTION
+        ========================================
+        */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .benefit-card {
+            background: var(--background-white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        .benefit-card .icon {
+            font-size: 3em;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+        }
+        .benefit-card h3 {
+            font-size: 1.5em;
+            color: var(--primary-deep-purple);
+            margin-bottom: 15px;
+        }
+        .benefit-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .benefit-card .card-subtext {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* ========================================
+        TESTIMONIALS SECTION
+        ========================================
+        */
+        #testimonials {
+            background: linear-gradient(135deg, var(--primary-deep-purple) 0%, var(--secondary-violet) 100%);
+            color: var(--text-light);
+        }
+
+        #testimonials h2 {
+            color: var(--text-light);
+        }
+        #testimonials .section-header p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .testimonial-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.8s;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-slide p.quote {
+            font-family: var(--serif-font);
+            font-style: italic;
+            font-size: 1.8em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-slide p.author {
+            font-weight: bold;
+            font-family: var(--sans-serif-font);
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .carousel-dots {
+            margin-top: 30px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .dot.active {
+            background-color: var(--accent-red);
+        }
+        
+        /* ========================================
+        FAQ SECTION
+        ========================================
+        */
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 25px 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--primary-deep-purple);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .faq-question:hover {
+            color: var(--accent-red);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 10px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            padding-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+        FINAL CTA SECTION
+        ========================================
+        */
+        #final-cta {
+            background-image: linear-gradient(rgba(35, 5, 138, 0.8), rgba(177, 108, 206, 0.8)), url('Images/final-cta.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #final-cta h2 {
+            color: var(--text-light);
+        }
+        
+        #final-cta p {
+            max-width: 600px;
+            margin: 20px auto 30px;
+            opacity: 0.9;
+        }
+
+
+        /* ========================================
+        FOOTER
+        ========================================
+        */
+        footer {
+            background-color: var(--primary-deep-purple);
+            color: var(--text-light);
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .footer-content p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+        
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            transition: fill 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+        .social-icons a:hover svg {
+            fill: var(--accent-red);
+        }
+        
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        /* ========================================
+        BACK TO TOP BUTTON
+        ========================================
+        */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+            transform: translateY(20px);
+            z-index: 999;
+        }
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* ========================================
+        RESPONSIVE DESIGN
+        ========================================
+        */
+        @media (max-width: 992px) {
+            h1 { font-size: 3em; }
+            h2 { font-size: 2.2em; }
+            
+            .about-section, .division-content-layout {
+                flex-direction: column;
+            }
+            
+            .division-content-layout {
+                text-align: center;
+            }
+
+            .division-text ul {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            nav.scrolled {
+                padding: 10px 20px;
+            }
+            nav .nav-links {
+                /* Basic mobile nav would go here, for demo purposes we hide them */
+                display: none;
+            }
+            h1 { font-size: 2.5em; }
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .division-tabs {
+                flex-wrap: wrap;
+            }
+            .tab-button {
+                flex-basis: 50%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav id="navbar">
+        <a href="#hero" class="logo">Hart Holdings</a>
+        <div class="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#divisions">Divisions</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <div class="background-overlay"></div>
+        <div class="hero-content">
+            <h1 class="reveal-on-scroll">From Blueprint to Payday: Your Complete Project Partner.</h1>
+            <p class="reveal-on-scroll">You’re tired of stalled builds, cash-flow gaps, and vendor headaches. We unify construction, financing, property, and logistics—so you can focus on growth and peace of mind.</p>
+            <a href="#final-cta" class="cta-button reveal-on-scroll">Get Your Custom Plan</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- About & Stats Section -->
+        <section id="about">
+            <div class="container">
+                <div class="about-section">
+                    <div class="about-image reveal-on-scroll">
+                        <img src="Images/team.jpg" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/e8e8e8/333?text=Image+Not+Found';"
+                             alt="Hart Holdings leadership team in a modern boardroom">
+                    </div>
+                    <div class="about-content reveal-on-scroll">
+                        <p class="sub-title">Your All-In-One Business Ally</p>
+                        <h3>We don't just build projects, we build partnerships.</h3>
+                        <p>Since 2010, Hart Holdings has been the silent partner behind some of Zimbabwe's most successful ventures. We're a composite investment group dedicated to simplifying complexity. By integrating key services under one roof, we eliminate the friction that costs you time and money.</p>
+                        <p>Our mission is to provide end-to-end solutions that accelerate timelines, protect cash flow, and deliver superior results. Your success is our blueprint.</p>
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="250">0</span>+
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                             <div class="stat-item">
+                                <span class="stat-number" data-target="98">0</span>%
+                                <span class="stat-label">Client Satisfaction</span>
+                            </div>
+                             <div class="stat-item">
+                                <span class="stat-number" data-target="14">0</span>+
+                                <span class="stat-label">Years of Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divisions (Services) Section -->
+        <section id="divisions">
+            <div class="container">
+                <div class="section-header reveal-on-scroll">
+                    <p class="sub-title">Our Expertise</p>
+                    <h2>One Partner, Infinite Solutions</h2>
+                    <p>We've structured our operations into distinct, expert-led divisions that work in synergy. This ensures you get specialized knowledge with the efficiency of a single, coordinated team.</p>
+                </div>
+                
+                <div class="division-tabs reveal-on-scroll">
+                    <button class="tab-button active" data-tab="construction">Hart Construction</button>
+                    <button class="tab-button" data-tab="finance">Hart Finance</button>
+                    <button class="tab-button" data-tab="properties">Hart Properties</button>
+                    <button class="tab-button" data-tab="logistics">Hart Logistics</button>
+                </div>
+
+                <div id="construction" class="tab-content active">
+                    <div class="division-content-layout">
+                        <div class="division-text">
+                            <h3>Building a Foundation for Success</h3>
+                            <p>From initial feasibility studies to handing over the keys, our construction division manages every phase with precision and accountability.</p>
+                            <ul>
+                                <li>End-to-end Project Management</li>
+                                <li>Vetted Contractor Network</li>
+                                <li>Guaranteed On-Time Delivery</li>
+                                <li>Quality & Safety Compliance</li>
+                            </ul>
+                        </div>
+                        <div class="division-image">
+                           <img src="Images/construction.jpg" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/500x350/e8e8e8/333?text=Image+Not+Found';"
+                                alt="A modern architectural building managed by Hart Construction">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="finance" class="tab-content">
+                    <div class="division-content-layout">
+                        <div class="division-text">
+                            <h3>Fueling Your Growth</h3>
+                            <p>Our finance arm provides agile, transparent funding solutions designed to keep your projects moving and your business growing, without the red tape.</p>
+                            <ul>
+                                <li>Order & Bridge Financing</li>
+                                <li>Collateral & Civil Servant Loans</li>
+                                <li>Quick Approval Process (24-72 hours)</li>
+                                <li>Transparent, Fair Terms</li>
+                            </ul>
+                        </div>
+                        <div class="division-image">
+                           <img src="Images/finance.jpg" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/500x350/e8e8e8/333?text=Image+Not+Found';"
+                                alt="Abstract graphic showing financial growth charts">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="properties" class="tab-content">
+                    <div class="division-content-layout">
+                         <div class="division-text">
+                            <h3>Maximizing Your Assets</h3>
+                            <p>We transform properties from passive holdings into profitable, well-managed assets. Our active management increases value and tenant satisfaction.</p>
+                            <ul>
+                                <li>Active Asset Management</li>
+                                <li>Tenant Acquisition & Retention</li>
+                                <li>Maintenance & Value Optimization</li>
+                                <li>Transparent Financial Reporting</li>
+                            </ul>
+                        </div>
+                        <div class="division-image">
+                           <img src="Images/property.jpg" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/500x350/e8e8e8/333?text=Image+Not+Found';"
+                                alt="The exterior of a sleek, modern commercial property">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="logistics" class="tab-content">
+                    <div class="division-content-layout">
+                         <div class="division-text">
+                            <h3>Delivering on Our Promises</h3>
+                            <p>Our logistics network is the backbone of our integrated model, ensuring materials, goods, and resources are where they need to be, when they need to be there.</p>
+                            <ul>
+                                <li>Contract & Automotive Distribution</li>
+                                <li>Specialist & Last-Mile Delivery</li>
+                                <li>Real-Time Tracking & Reporting</li>
+                                <li>Nationwide Coverage</li>
+                            </ul>
+                        </div>
+                        <div class="division-image">
+                           <img src="Images/logistics.jpg" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/500x350/e8e8e8/333?text=Image+Not+Found';"
+                                alt="A fleet of Hart Logistics trucks on the move">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="reveal-on-scroll">
+            <div class="container">
+                <div class="section-header">
+                     <p class="sub-title">The Hart Advantage</p>
+                    <h2>Why Our Integrated Model Works for You</h2>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="icon">✓</div>
+                        <h3>Guaranteed On-Time Completion</h3>
+                        <p>Hit every milestone, from feasibility to ribbon-cutting. Our proactive management eliminates delays.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="icon">$</div>
+                        <h3>Funding When You Need It</h3>
+                        <p>Access order financing, bridge loans, and more with quick approvals and clear terms to protect your cash flow.</p>
+                    </div>
+                    <div class="benefit-card">
+                         <div class="icon">📈</div>
+                        <h3>Hands-Off Property Profits</h3>
+                        <p>Maximize rental revenue and tenant satisfaction with our active asset management and transparent reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="reveal-on-scroll">
+            <div class="container">
+                <div class="section-header">
+                     <p class="sub-title">Social Proof</p>
+                    <h2>Don't Just Take Our Word For It</h2>
+                </div>
+                <div class="testimonial-carousel">
+                    <div class="testimonial-slide active">
+                        <p class="quote">“Hart cut our build time by 20% and secured our financing in days. They didn't just provide services; they provided a strategic advantage.”</p>
+                        <p class="author">— CEO, Peak Developments</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="quote">“The single point of contact for logistics and construction saved us countless hours. For the first time, our supply chain and build schedule were perfectly in sync.”</p>
+                        <p class="author">— Operations Manager, ZimBuild Corp</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="quote">“Their property management team turned our portfolio profitable within six months. It’s truly hands-off for me, with better results than I ever achieved alone.”</p>
+                        <p class="author">— Private Investor, Harare</p>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="reveal-on-scroll">
+            <div class="container">
+                 <div class="section-header">
+                    <p class="sub-title">Clarifying the Details</p>
+                    <h2>Your Questions, Answered</h2>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">What makes Hart different from just hiring separate contractors?</button>
+                        <div class="faq-answer">
+                            <p>It's about synergy and accountability. When you hire separate contractors, you become the project manager, responsible for aligning timelines, budgets, and communication. We eliminate that friction. Our divisions work from a single playbook, creating efficiencies that separate contractors can't match. The result is less risk, faster timelines, and a single point of accountability: us.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How fast can I actually get financing?</button>
+                        <div class="faq-answer">
+                            <p>Our process is built for speed because we understand that opportunity doesn't wait. Most order financing requests are assessed and funded within 72 hours. For more urgent needs like bridge loans, we can often provide approval and funding in as little as 24 hours, assuming all documentation is in order.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can you manage projects outside of major cities?</button>
+                        <div class="faq-answer">
+                            <p>Absolutely. Our operational footprint covers all of Zimbabwe. We combine dedicated regional teams on the ground with advanced digital project management dashboards. This ensures you have full visibility and control, with expert oversight, no matter where your project is located.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="final-cta" class="reveal-on-scroll">
+            <div class="container">
+                <h2>Ready to Simplify Everything?</h2>
+                <p>Stop juggling vendors and start focusing on growth. Let's discuss a unified strategy for your projects and investments. Get your free, no-obligation consultation and discover the Hart Holdings difference.</p>
+                 <a href="#" class="cta-button">Get My Free Plan Today</a>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Hart Holdings</h3>
+            <p>Your partner for seamless project delivery and financing, from blueprint to payday.</p>
+            <div class="social-icons">
+                <a href="#" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" title="Twitter">
+                     <svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.424.727-.666 1.581-.666 2.477 0 1.61.82 3.027 2.053 3.849-.758-.024-1.468-.232-2.094-.578v.081c0 2.254 1.603 4.135 3.737 4.568-.39.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.844 2.313 3.186 4.354 3.223-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.094 7.14 2.094 8.57 0 13.255-7.098 13.255-13.254 0-.202-.005-.403-.014-.602.91-.658 1.7-1.475 2.323-2.41z"/></svg>
+                </a>
+                <a href="#" title="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                </a>
+            </div>
+             <div class="footer-bottom">
+                &copy; 2025 Hart Holdings. All Rights Reserved. A Registered Zimbabwean Company.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#hero" id="back-to-top" title="Back to Top">&uarr;</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            /**
+             * Sticky Navigation on Scroll
+             */
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            /**
+             * Reveal Elements on Scroll
+             * Uses IntersectionObserver for performance.
+             */
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: unobserve after revealing to save resources
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+            
+            /**
+             * Animated Stat Counters on Scroll
+             */
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.stat-number');
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            counter.innerText = '0';
+                            
+                            const updateCounter = () => {
+                                const current = +counter.innerText;
+                                const increment = target / 200; // Speed of animation
+
+                                if (current < target) {
+                                    counter.innerText = `${Math.ceil(current + increment)}`;
+                                    setTimeout(updateCounter, 10);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            };
+                            updateCounter();
+                        });
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, { threshold: 0.5 });
+            const statsSection = document.querySelector('.stats-container');
+            if (statsSection) {
+                 statsObserver.observe(statsSection);
+            }
+
+            /**
+             * Testimonial Carousel
+             */
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            if (slides.length > 0 && dotsContainer) {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => {
+                        showSlide(i);
+                        currentSlide = i;
+                        clearInterval(slideInterval); // Stop auto-rotate
+                        slideInterval = setInterval(nextSlide, 7000); // Restart
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                
+                showSlide(currentSlide);
+                slideInterval = setInterval(nextSlide, 7000); // Auto-rotate every 7 seconds
+            }
+
+            /**
+             * FAQ Accordion
+             */
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items for a cleaner accordion experience
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                        }
+                    });
+                    
+                    // Toggle the clicked item
+                    item.classList.toggle('active');
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+
+            /**
+             * Division Tabs
+             */
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.dataset.tab;
+
+                    // Update button states
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Update content visibility
+                    tabContents.forEach(content => {
+                        content.classList.toggle('active', content.id === targetTab);
+                    });
+                });
+            });
+
+
+            /**
+             * Back to Top Button
+             */
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
